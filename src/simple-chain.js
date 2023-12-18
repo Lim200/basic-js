@@ -5,38 +5,38 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 const chainMaker = {
-  chain: [],
+  chainArr: [],
   getLength() {
-    return this.chain.length;
+    return this.chainArr.length;
   },
   addLink(value = ' ') {
     // if (this.chain.length === 0) {
-    this.chain.push(`( ${value} )`);
+    this.chainArr.push(`( ${value} )`);
     // } else {
-    //   this.chain.push(`~~( ${value} )`);
+    //   this.chainArr.push(`~~( ${value} )`);
     // }
     return this;
   },
   removeLink(position) {
     if (
       typeof position !== 'number' ||
-      position > this.chain.length ||
+      position > this.chainArr.length ||
       position < 1
     ) {
-      this.chain = [];
+      this.chainArr = [];
       throw Error("You can't remove incorrect link!");
     } else {
-      this.chain.splice(position - 1, 1);
+      this.chainArr.splice(position - 1, 1);
       return this;
     }
   },
   reverseChain() {
-    this.chain.reverse();
+    this.chainArr.reverse();
     return this;
   },
   finishChain() {
-    let result = this.chain.join('~~');
-    this.chain = [];
+    let result = this.chainArr.join('~~');
+    this.chainArr = [];
     return result;
   },
 };
